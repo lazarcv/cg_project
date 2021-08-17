@@ -117,17 +117,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named project_base
+# Target rules for targets named cg_project
 
 # Build rule for target.
-project_base: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 project_base
-.PHONY : project_base
+cg_project: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cg_project
+.PHONY : cg_project
 
 # fast build rule for target.
-project_base/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_base.dir/build.make CMakeFiles/project_base.dir/build
-.PHONY : project_base/fast
+cg_project/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cg_project.dir/build.make CMakeFiles/cg_project.dir/build
+.PHONY : cg_project/fast
 
 #=============================================================================
 # Target rules for targets named STB_IMAGE
@@ -197,7 +197,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_base.dir/build.make CMakeFiles/project_base.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cg_project.dir/build.make CMakeFiles/cg_project.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -205,7 +205,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_base.dir/build.make CMakeFiles/project_base.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cg_project.dir/build.make CMakeFiles/cg_project.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -213,7 +213,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project_base.dir/build.make CMakeFiles/project_base.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cg_project.dir/build.make CMakeFiles/cg_project.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -225,9 +225,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... STB_IMAGE"
+	@echo "... cg_project"
 	@echo "... glad"
 	@echo "... imgui"
-	@echo "... project_base"
 	@echo "... libs/stb_image.o"
 	@echo "... libs/stb_image.i"
 	@echo "... libs/stb_image.s"

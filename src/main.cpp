@@ -49,6 +49,13 @@ struct PointLight {
     float quadratic;
 };
 
+struct DirectionalLight {
+    glm::vec3 direction;
+    glm::vec3 ambient;
+    glm::vec3 diffuse;
+    glm::vec3 specular;
+};
+
 struct ProgramState {
     glm::vec3 clearColor = glm::vec3(0);
     bool ImGuiEnabled = false;
@@ -56,9 +63,10 @@ struct ProgramState {
     bool CameraMouseMovementUpdateEnabled = true;
     glm::vec3 modelPosition = glm::vec3(0.0f);
     float modelScale = 0.3f;
+    DirectionalLight directionalLight;
     PointLight pointLight;
     ProgramState()
-            : camera(glm::vec3(0.0f, 0.0f, 3.0f)) {}
+    : camera(glm::vec3(0.0f, 0.0f, 3.0f)) {}
     void SaveToFile(std::string filename);
     void LoadFromFile(std::string filename);
 };
@@ -66,30 +74,30 @@ struct ProgramState {
 void ProgramState::SaveToFile(std::string filename) {
     std::ofstream out(filename);
     out << clearColor.r << '\n'
-        << clearColor.g << '\n'
-        << clearColor.b << '\n'
-        << ImGuiEnabled << '\n'
-        << camera.Position.x << '\n'
-        << camera.Position.y << '\n'
-        << camera.Position.z << '\n'
-        << camera.Front.x << '\n'
-        << camera.Front.y << '\n'
-        << camera.Front.z << '\n';
+    << clearColor.g << '\n'
+    << clearColor.b << '\n'
+    << ImGuiEnabled << '\n'
+    << camera.Position.x << '\n'
+    << camera.Position.y << '\n'
+    << camera.Position.z << '\n'
+    << camera.Front.x << '\n'
+    << camera.Front.y << '\n'
+    << camera.Front.z << '\n';
 }
 
 void ProgramState::LoadFromFile(std::string filename) {
     std::ifstream in(filename);
     if (in) {
         in >> clearColor.r
-           >> clearColor.g
-           >> clearColor.b
-           >> ImGuiEnabled
-           >> camera.Position.x
-           >> camera.Position.y
-           >> camera.Position.z
-           >> camera.Front.x
-           >> camera.Front.y
-           >> camera.Front.z;
+        >> clearColor.g
+        >> clearColor.b
+        >> ImGuiEnabled
+        >> camera.Position.x
+        >> camera.Position.y
+        >> camera.Position.z
+        >> camera.Front.x
+        >> camera.Front.y
+        >> camera.Front.z;
     }
 }
 
@@ -165,9 +173,16 @@ int main() {
     pointLight.ambient = glm::vec3(0.1, 0.1, 0.1);
     pointLight.diffuse = glm::vec3(0.6, 0.6, 0.6);
     pointLight.specular = glm::vec3(1.0, 1.0, 1.0);
+
     pointLight.constant = 1.0f;
     pointLight.linear = 0.09f;
     pointLight.quadratic = 0.032f;
+
+    DirectionalLight& directionalLight = programState->directionalLight;
+    directionalLight.direction = glm::vec3(0.f, 0.f, 1.f);
+    directionalLight.ambient = glm::vec3(0.1, 0.1, 0.1);
+    directionalLight.diffuse = glm::vec3(0.2, 0.2, 0.2);
+    directionalLight.specular = glm::vec3(0.5, 0.5, 0.5);
 
     // draw in wireframe
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -202,6 +217,10 @@ int main() {
         ourShader.setFloat("pointLight.quadratic", pointLight.quadratic);
         ourShader.setVec3("viewPosition", programState->camera.Position);
         ourShader.setFloat("material.shininess", 32.0f);
+        ourShader.setVec3("directionalLight.direction", directionalLight.direction);
+        ourShader.setVec3("directionalLight.ambient", directionalLight.ambient);
+        ourShader.setVec3("directionalLight.diffuse", directionalLight.diffuse);
+        ourShader.setVec3("directionalLight.specular", directionalLight.specular);
         // view/projection transformations
         glm::mat4 projection = glm::perspective(glm::radians(programState->camera.Zoom),
                                                 (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 100.0f);
