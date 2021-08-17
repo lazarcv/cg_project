@@ -63,7 +63,7 @@ struct ProgramState {
     bool ImGuiEnabled = false;
     Camera camera;
     bool CameraMouseMovementUpdateEnabled = true;
-    glm::vec3 modelPosition = glm::vec3(0.0f);
+    glm::vec3 modelPosition = glm::vec3(3.0f, 13.0f, 0.0f);
     float modelScale = 0.3f;
     DirectionalLight directionalLight;
     PointLight pointLight;
@@ -161,6 +161,7 @@ int main() {
     // configure global opengl state
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
 
     //glEnable(GL_FRAMEBUFFER_SRGB);
 
