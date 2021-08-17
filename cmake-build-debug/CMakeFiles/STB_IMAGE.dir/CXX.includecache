@@ -36,7 +36,7 @@ intrin.h
 arm_neon.h
 -
 
-/home/lucky/fax/rg/project_base/libs/stb_image.cpp
+/home/lucky/fax/rg/cg_project/libs/stb_image.cpp
 stb_image.h
-/home/lucky/fax/rg/project_base/libs/stb_image.h
+/home/lucky/fax/rg/cg_project/libs/stb_image.h
 

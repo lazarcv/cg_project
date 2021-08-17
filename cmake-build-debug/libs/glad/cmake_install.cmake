@@ -1,4 +1,4 @@
-# Install script for directory: /home/lucky/fax/rg/project_base/libs/glad
+# Install script for directory: /home/lucky/fax/rg/cg_project/libs/glad
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
