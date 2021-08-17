@@ -1,6 +1,6 @@
 /home/lucky/fax/rg/cg_project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/lucky/fax/rg/cg_project/cmake-build-debug/CMakeFiles/project_base.dir
 /home/lucky/fax/rg/cg_project/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/lucky/fax/rg/cg_project/cmake-build-debug/CMakeFiles/cg_project.dir
 /home/lucky/fax/rg/cg_project/cmake-build-debug/CMakeFiles/STB_IMAGE.dir
 /home/lucky/fax/rg/cg_project/cmake-build-debug/libs/glad/CMakeFiles/edit_cache.dir
 /home/lucky/fax/rg/cg_project/cmake-build-debug/libs/glad/CMakeFiles/rebuild_cache.dir
