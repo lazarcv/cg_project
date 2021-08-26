@@ -63,7 +63,7 @@ struct ProgramState {
     bool ImGuiEnabled = false;
     Camera camera;
     bool CameraMouseMovementUpdateEnabled = true;
-    glm::vec3 modelPosition = glm::vec3(3.0f, 13.0f, 0.0f);
+    glm::vec3 modelPosition = glm::vec3(3.0f, 0.0f, 0.0f);
     float modelScale = 0.3f;
     DirectionalLight directionalLight;
     PointLight pointLight;
@@ -172,9 +172,9 @@ int main() {
             // positions
             -1.0f,  1.0f, -1.0f,
             -1.0f, -1.0f, -1.0f,
-            1.0f, -1.0f, -1.0f,
-            1.0f, -1.0f, -1.0f,
-            1.0f,  1.0f, -1.0f,
+             1.0f, -1.0f, -1.0f,
+             1.0f, -1.0f, -1.0f,
+             1.0f,  1.0f, -1.0f,
             -1.0f,  1.0f, -1.0f,
 
             -1.0f, -1.0f,  1.0f,
@@ -184,33 +184,33 @@ int main() {
             -1.0f,  1.0f,  1.0f,
             -1.0f, -1.0f,  1.0f,
 
-            1.0f, -1.0f, -1.0f,
-            1.0f, -1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f, -1.0f,
-            1.0f, -1.0f, -1.0f,
+             1.0f, -1.0f, -1.0f,
+             1.0f, -1.0f,  1.0f,
+             1.0f,  1.0f,  1.0f,
+             1.0f,  1.0f,  1.0f,
+             1.0f,  1.0f, -1.0f,
+             1.0f, -1.0f, -1.0f,
 
             -1.0f, -1.0f,  1.0f,
             -1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f, -1.0f,  1.0f,
+             1.0f,  1.0f,  1.0f,
+             1.0f,  1.0f,  1.0f,
+             1.0f, -1.0f,  1.0f,
             -1.0f, -1.0f,  1.0f,
 
             -1.0f,  1.0f, -1.0f,
-            1.0f,  1.0f, -1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
+             1.0f,  1.0f, -1.0f,
+             1.0f,  1.0f,  1.0f,
+             1.0f,  1.0f,  1.0f,
             -1.0f,  1.0f,  1.0f,
             -1.0f,  1.0f, -1.0f,
 
             -1.0f, -1.0f, -1.0f,
             -1.0f, -1.0f,  1.0f,
-            1.0f, -1.0f, -1.0f,
-            1.0f, -1.0f, -1.0f,
+             1.0f, -1.0f, -1.0f,
+             1.0f, -1.0f, -1.0f,
             -1.0f, -1.0f,  1.0f,
-            1.0f, -1.0f,  1.0f
+             1.0f, -1.0f,  1.0f
     };
 
     unsigned int skyboxVAO, skyboxVBO;
@@ -224,12 +224,12 @@ int main() {
 
     vector<std::string> faces
     {
-        FileSystem::getPath("resources/textures/skybox/right.jpg"),
-        FileSystem::getPath("resources/textures/skybox/left.jpg"),
-        FileSystem::getPath("resources/textures/skybox/bottom.jpg"),
-        FileSystem::getPath("resources/textures/skybox/top.jpg"),
-        FileSystem::getPath("resources/textures/skybox/front.jpg"),
-        FileSystem::getPath("resources/textures/skybox/back.jpg")
+        FileSystem::getPath("resources/textures/skybox/posx.jpg"),
+        FileSystem::getPath("resources/textures/skybox/negx.jpg"),
+        FileSystem::getPath("resources/textures/skybox/negy.jpg"),
+        FileSystem::getPath("resources/textures/skybox/posy.jpg"),
+        FileSystem::getPath("resources/textures/skybox/posz.jpg"),
+        FileSystem::getPath("resources/textures/skybox/negz.jpg")
     };
     unsigned int cubemapTexture = loadCubemap(faces);
 
@@ -319,8 +319,8 @@ int main() {
         skyboxShader.use();
         view = glm::mat4(glm::mat3(programState->camera.GetViewMatrix())); // remove translation from the view matrix
         skyboxShader.setMat4("view", view);
-        projection = glm::perspective(glm::radians(45.0f),
-                                      (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 100.0f);
+        projection = glm::perspective(glm::radians(30.0f),
+                                      (float) SCR_WIDTH / (float) SCR_HEIGHT, 1.f, 100.0f);
         skyboxShader.setMat4("projection", projection);
         // skybox cube
         glBindVertexArray(skyboxVAO);
