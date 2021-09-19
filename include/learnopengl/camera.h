@@ -17,8 +17,8 @@ enum Camera_Movement {
 
 // Default camera values
 const float YAW         = -90.0f;
-const float PITCH       =  0.0f;
-const float SPEED       =  10.5f;
+const float PITCH       =  50.0f;
+const float SPEED       =  1.5f;
 const float SENSITIVITY =  0.1f;
 const float ZOOM        =  45.0f;
 
@@ -92,10 +92,10 @@ class Camera
                 // make sure that when pitch is out of bounds, screen doesn't get flipped
                 if (constrainPitch)
                 {
-                    if (Pitch > 5.0f)
-                        Pitch = 5.0f;
-                    if (Pitch < -5.0f)
-                        Pitch = -5.0f;
+                    if (Pitch > 0.0f)
+                        Pitch = 0.0f;
+                    if (Pitch < -0.0f)
+                        Pitch = -0.0f;
                 }
 
                 // update Front, Right and Up Vectors using the updated Euler angles
